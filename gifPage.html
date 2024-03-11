@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Mark</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet" />
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+
+<body>
+
+    <header class="fixed inset-x-0 top-0 z-10 w-full bg-[#151d2f]" data-aos="fade-down">
+        <div class="mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between lg:h-20">
+                <div class="flex-shrink-0">
+                    <a href="/" title="" class="flex cursor-pointer">
+                        <h1 class="text-2xl font-bold text-white sm:text-3xl"><span class="text-[#13fc97]">GIF</span>
+                            Mark</h1>
+                    </a>
+                </div>
+
+                <div class="sm:ml-auto lg:flex lg:items-center lg:justify-end lg:space-x-6">
+                    <a href="#" title=""
+                        class="cursor-pointer rounded-md border-none bg-[#13fc97] hover:bg-[#00d87a] px-3 py-2 font-medium text-gray-800 outline-none sm:px-5 sm:py-3 "
+                        role="button">Github </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="box" style="margin-top: 80px;">
+        <div class="search-container" data-aos="zoom-in">
+            <input type="text" id="search-box" value="" placeholder="Search for GIFs" />
+            <button id="submit-btn"
+                class="cursor-pointer rounded-md border-none bg-[#13fc97] hover:bg-[#00d87a] px-3 py-2 font-medium text-gray-800 outline-none sm:px-5 sm:py-3 ">Search</button>
+        </div>
+        <div class="loader"></div>
+        <div class="wrapper"></div>
+        <div class="loadMoreBtnContainer">
+            <button id="load-more"
+                class="cursor-pointer rounded-md  border-none bg-[#13fc97] hover:bg-[#00d87a] px-3 py-2 font-medium text-gray-800 outline-none sm:px-5 sm:py-3 ">Show More</button>
+        </div>
+    </div>
+
+    <!-- api key -->
+    <script src="./api/api-key.js"></script>
+    <!-- script -->
+    <script src="./js/script.js"></script>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1500,
+        });
+    </script>
+</body>
+
+</html>
