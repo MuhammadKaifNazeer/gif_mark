@@ -54,7 +54,7 @@ button {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
-
+/*  */
 .container {
   background-color: #2b304d;
   display: flex;

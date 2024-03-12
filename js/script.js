@@ -1,22 +1,23 @@
 let submitBtn = document.getElementById("submit-btn");
 let searchBox = document.getElementById("search-box");
-let loadMoreBtn = document.getElementById("load-more"); // Assuming you have an element with id "load-more"
+let loadMoreBtn = document.getElementById("load-more");
+let wrapper = document.querySelector(".wrapper");  
 
-let displayedGifs = 0; // Keeps track of the number of GIFs displayed
-let offset = 0; // Offset for API call to retrieve new GIFs
+let displayedGifs = 0;
+let offset = 0;
 
 let generateGif = () => {
   // Display loader until gifs load
   let loader = document.querySelector(".loader");
   loader.style.display = "block";
-  document.querySelector(".wrapper").style.display = "none";
+  wrapper.style.display = "none"; // Hide wrapper while loading
 
   let q = searchBox.value;
   let gifCount = 9; // Number of GIFs to display initially
 
   // API URL
   let finalURL = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${q}&limit=${gifCount}&offset=${offset}&rating=g&lang=en`;
-  document.querySelector(".wrapper").innerHTML = "";
+  wrapper.innerHTML = ""; // Clear wrapper content before fetching new GIFs
 
   // Make a call to API
   fetch(finalURL)
@@ -25,17 +26,18 @@ let generateGif = () => {
       let gifsData = info.data;
 
       gifsData.forEach((gif) => {
-        // Generate cards for every gif
         let container = document.createElement("div");
         container.classList.add("container");
 
         let img = document.createElement("img");
-        img.setAttribute("src", gif.images.downsized_medium.url);
-
-        // Handle image load event (optional)
         img.onload = () => {
-          // You can perform actions here after the image loads (e.g., remove loader)
+          wrapper.appendChild(container); // Append card only after image loads
+          displayedGifs++;
         };
+        img.onerror = () => {
+          console.error("Image failed to load:", gif.images.downsized_medium.url);
+        };
+        img.setAttribute("src", gif.images.downsized_medium.url);
 
         container.append(img);
 
@@ -68,15 +70,11 @@ let generateGif = () => {
             });
         };
         container.append(copyBtn);
-
-        document.querySelector(".wrapper").append(container);
       });
-
-      displayedGifs += gifsData.length; // Update displayed GIFs count
 
       // Hide loader and show/hide "Load More" button
       loader.style.display = "none";
-      document.querySelector(".wrapper").style.display = "grid";
+      wrapper.style.display = "grid"; // Show wrapper after loading
       loadMoreBtn.style.display = gifsData.length < gifCount ? "none" : "block";
     });
 };
